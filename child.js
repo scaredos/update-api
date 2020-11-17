@@ -5,8 +5,10 @@ const get = require('node-fetch');
 const {
   exec
 } = require('child_process');
+const helmet = require('helmet');
 
 const app = express()
+app.use(helmet())
 // You should change this port
 const port = 11100
 const masterKey = 'XXXX'; // This is used to auth replies to the server
