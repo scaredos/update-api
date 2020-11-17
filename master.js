@@ -6,9 +6,11 @@ const fs = require('fs');
 const {
   exec
 } = require('child_process');
+const helmet = require('helmet');
 
 
 const app = express()
+app.use(helmet())
 // You should change this port
 const port = 10101
 const masterKey = 'XXXX'; // This is the secret key used to authenticate the request
