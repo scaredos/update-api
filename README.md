@@ -1,6 +1,13 @@
 # update-api
 A simple API to update a list of servers all at once
 
+## Requirements
+```
+express
+node-fetch
+helmet
+```
+
 ## Configuration
 - To setup, you must first edit `master.js` to include a list of servers to send requests to. I will refer to these as the **child servers**. 
 ```node
