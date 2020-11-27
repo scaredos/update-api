@@ -17,12 +17,10 @@ const mother = 'http://127.0.0.0:3000/report_error'; // This is used in case of 
 const commands = ['echo 0', 'echo 1', 'echo 2'];
 
 app.get('/update', async (req, res) => {
-  if (!req.header('Authorization')) {
-    res.status(403).send('Unauthorized'); // Send Unauthorized if there is no header
-  }
   let tempHeader = req.header('Authorization');
-  if (tempHeader != masterKey) {
-    res.status(400).send('Bad Request'); // Send bad request if the key is wrong
+
+  if (!tempheader || tempheader != masterKey) {
+    res.status(400).send('Bad Request');
   } else {
     for (var command of commands) {
       exec(command, async (err, out, stderr) => {
