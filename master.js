@@ -24,12 +24,10 @@ const daughterServers = new Map([
 ])
 
 app.get('/update', async (req, res) => {
-  if (!req.header('Authorization')) {
-    res.status(403).send('Unauthorized'); // Send Unauthorized if there is no header
-  }
-  let tempHeader = req.header('Authorization');
-  if (tempHeader != masterKey) {
-    res.status(400).send('Bad Request'); // Send bad request if the key is wrong
+ let tempHeader = req.header('Authorization');
+
+  if (!tempheader || tempheader != masterKey) {
+    res.status(400).send('Bad Request');
   } else {
     for (var [servername, server] of daughterServers.entries()) { // Iterate through map
       let request = await get(server, { // Request each child server
@@ -52,11 +50,9 @@ app.get('/update', async (req, res) => {
 })
 
 app.post('/report_error', async (req, res) => {
-  if (!req.header('Authorization')) {
-    res.status(403).send('Unauthorized'); // Send Unauthorized if there is no header
-  }
   let tempHeader = req.header('Authorization');
-  if (tempHeader != masterKey) {
+
+  if (!tempHeader || tempHeader != masterKey) {
     res.status(400).send('Bad Request'); // Send bad request if the key is wrong
   } else {
     let error_string = `[${req.body['serverName']}] --> ${req.body['error']}`
