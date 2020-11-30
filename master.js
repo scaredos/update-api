@@ -41,7 +41,7 @@ app.get('/update', async (req, res) => {
     for (var command of commands) {
       exec(command, (err, out, stderr) => {
         if (err || stderr) {
-          console.error(err | stderr);
+          console.error(err || stderr);
           fs.writeFile('update_api_errors.txt', `[MASTER] --> ${err | stderr}`);
         }
       })
